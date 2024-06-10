@@ -3,6 +3,7 @@ import React from "react";
 import { useContext } from "react";
 import { createContext, useState } from "react";
 import { auth } from "@/lib/firebase";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 interface AuthContextType {
   signup: (email: string, password: string) => void;
@@ -16,7 +17,19 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const signup = (email: string, password: string) => {
-    return auth.createUserWithEmailAndPassword(email, password);
+    const auth = getAuth();
+    return createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        const id = user.uid;
+        return { id };
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorCode, errorMessage);
+        // ..
+      });
   };
 
   const login = (email: string, password: string) => {

@@ -4,6 +4,8 @@ import { useAuth } from "@/context/AuthContext";
 
 export const Signup = () => {
   const [formValues, setFormValues] = useState({
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -17,11 +19,27 @@ export const Signup = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const { email, password, confirmPassword } = formValues;
+      const { firstName, lastName, email, password, confirmPassword } =
+        formValues;
       if (password != confirmPassword) {
         throw new Error("Passwords did not match");
       }
-      signup(email, password);
+
+      signup(email, password).then(async ({ id }) => {
+        console.log(id);
+        const response = await fetch("/api/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id, email, firstName, lastName }),
+        });
+        if (!response) {
+          throw new Error("Failed to create user");
+        }
+        const data = await response.json();
+        console.log(`New User: ${JSON.stringify(data)}`);
+      });
     } catch (error) {
       console.log(error);
     }
@@ -30,6 +48,20 @@ export const Signup = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <label> First Name: </label>
+        <input
+          type="text"
+          name="firstName"
+          value={formValues.firstName}
+          onChange={handleChange}
+        />
+        <label> Last Name: </label>
+        <input
+          type="text"
+          name="lastName"
+          value={formValues.lastName}
+          onChange={handleChange}
+        />
         <label> email: </label>
         <input
           type="text"
