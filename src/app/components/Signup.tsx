@@ -1,49 +1,35 @@
 "use client";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
+import { useAuth } from "@/context/AuthContext";
 
-export default function Form() {
+export const Signup = () => {
   const [formValues, setFormValues] = useState({
-    name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
+  const { signup } = useAuth();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
   };
-
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const { name, email, password } = formValues;
-      const response = await fetch("/api/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password, name }),
-      });
-      if (!response) {
-        throw new Error("Failed to create user");
+      const { email, password, confirmPassword } = formValues;
+      if (password != confirmPassword) {
+        throw new Error("Passwords did not match");
       }
-      const data = await response.json();
-      console.log(`New User: ${JSON.stringify(data)}`);
+      signup(email, password);
     } catch (error) {
-      console.log("Failed to create user");
+      console.log(error);
     }
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label>name: </label>
-        <input
-          type="text"
-          name="name"
-          value={formValues.name}
-          onChange={handleChange}
-        />
         <label> email: </label>
         <input
           type="text"
@@ -58,10 +44,17 @@ export default function Form() {
           value={formValues.password}
           onChange={handleChange}
         />
+        <label>Confirm Password: </label>
+        <input
+          type="text"
+          name="confirmPassword"
+          value={formValues.confirmPassword}
+          onChange={handleChange}
+        />
         <button type="submit" className="bg-white ml-2 text-black">
           Submit
         </button>
       </form>
     </div>
   );
-}
+};
