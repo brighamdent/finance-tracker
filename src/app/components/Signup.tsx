@@ -10,6 +10,7 @@ export const Signup = () => {
     password: "",
     confirmPassword: "",
   });
+
   const { signup } = useAuth();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

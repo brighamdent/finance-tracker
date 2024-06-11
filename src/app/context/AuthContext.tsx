@@ -6,17 +6,24 @@ import { auth } from "@/lib/firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 interface AuthContextType {
-  signup: (email: string, password: string) => void;
+  signup: (email: string, password: string) => Promise<{ id: string } | void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+export function useAuth(): AuthContextType {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+}
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const signup = (email: string, password: string) => {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [currUserData, setCurrUserData] = useState(null);
+
+  const signup = async (email: string, password: string) => {
     const auth = getAuth();
     return createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -40,7 +47,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return auth.signout();
   };
 
-  const value = {
+  const value: AuthContextType = {
     signup,
     login,
     logout,
