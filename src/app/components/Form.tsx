@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { useState } from "react";
 
 export default function Form() {
   const [formValues, setFormValues] = useState({
@@ -8,12 +8,11 @@ export default function Form() {
     password: "",
   });
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
   };
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const { name, email, password } = formValues;
@@ -28,10 +27,8 @@ export default function Form() {
         throw new Error("Failed to create user");
       }
       const data = await response.json();
-      console.log(`New User: ${JSON.stringify(data)}`);
-    } catch (error) {
-      console.log("Failed to create user");
-    }
+      console.log(`New User: $`);
+    } catch (error) {}
   };
 
   return (

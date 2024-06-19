@@ -18,26 +18,6 @@ export const Login = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const { email, password } = formValues;
-      if (password != confirmPassword) {
-        throw new Error("Passwords did not match");
-      }
-
-      signup(email, password).then(async ({ id }) => {
-        console.log(id);
-        const response = await fetch("/api/users", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id, email, firstName, lastName }),
-        });
-        if (!response) {
-          throw new Error("Failed to create user");
-        }
-        const data = await response.json();
-        console.log(`New User: ${JSON.stringify(data)}`);
-      });
     } catch (error) {
       console.log(error);
     }

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useContext } from "react";
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { auth } from "@/lib/firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -44,10 +44,37 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const logout = () => {
-    return auth.signout();
+    return auth.signOut();
   };
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+      console.log("userdata jaja ", user);
+      return unsubscribe;
+    });
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (currentUser) {
+        const id = currentUser.uid;
+        const response = await fetch(`/api/users?userId=${id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        setCurrUserData(data[0]);
+      }
+    };
+    fetchData();
+  }, [currentUser]);
+
   const value: AuthContextType = {
+    currentUser,
+    currUserData,
     signup,
     login,
     logout,

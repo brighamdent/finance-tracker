@@ -1,5 +1,5 @@
 "use client";
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 
 export const Signup = () => {
@@ -11,8 +11,12 @@ export const Signup = () => {
     confirmPassword: "",
   });
 
-  const { signup } = useAuth();
+  const { currentUserData, signup } = useAuth();
 
+  useEffect(() => {
+    console.log(currentUserData);
+  }, [currentUserData]);
+  console.log(currentUserData);
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
@@ -48,6 +52,7 @@ export const Signup = () => {
 
   return (
     <div>
+      {currentUserData && <h1>{currentUserData.first_name}</h1>}
       <form onSubmit={handleSubmit}>
         <label> First Name: </label>
         <input
