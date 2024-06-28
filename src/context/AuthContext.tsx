@@ -2,10 +2,18 @@
 import React from "react";
 import { useContext } from "react";
 import { createContext, useState, useEffect } from "react";
-import { auth } from "@/lib/firebase";
+import { auth } from "src/lib/firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
+interface UserData {
+  user_id: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+}
 interface AuthContextType {
+  currentUser: any;
+  currUserData: UserData | null;
   signup: (email: string, password: string) => Promise<{ id: string } | void>;
 }
 
@@ -50,7 +58,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
-      console.log("userdata jaja ", user);
       return unsubscribe;
     });
   }, []);
@@ -72,12 +79,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     fetchData();
   }, [currentUser]);
 
+  useEffect(() => {
+    console.log(currentUser);
+    console.log("Auth Context: ", currUserData);
+  }, [currUserData]);
+
   const value: AuthContextType = {
     currentUser,
     currUserData,
     signup,
-    login,
-    logout,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

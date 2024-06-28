@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import pool from "../../lib/db";
+import pool from "src/lib/db";
 
 export async function POST(req: NextRequest) {
   console.log("POST method running");
