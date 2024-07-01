@@ -3,10 +3,11 @@ import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import background from "../../public/main-photo.jpg";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
 
 export const Signup = () => {
   const [formValues, setFormValues] = useState({
-    firstName: "",
     lastName: "",
     email: "",
     password: "",
@@ -62,58 +63,49 @@ export const Signup = () => {
           style={{ objectPosition: "left 30%" }}
         />
       </div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white h-[600px] rounded-md w-[500px]">
+      <div className="absolute flex flex-col items-center text-[#264653] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white h-[600px] rounded-md w-[500px] p-8">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col justify-around items-center"
+          className="flex flex-col justify-around items-center h-[90%] "
         >
+          <h1 className="self-start text-[#264653] text-[40px]">Sign Up</h1>
           <div>
-            <label> First Name: </label>
-            <input
-              type="text"
-              name="firstName"
-              value={formValues.firstName}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label> Last Name: </label>
-            <input
-              type="text"
-              name="lastName"
-              value={formValues.lastName}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label> email: </label>
             <input
               type="text"
               name="email"
+              placeholder="Email"
               value={formValues.email}
               onChange={handleChange}
+              className="border-[2px] border-black-50 w-96 h-16 rounded-md p-2 text-[25px] "
             />
           </div>
           <div>
-            <label> password: </label>
             <input
               type="text"
               name="password"
+              placeholder="Password"
               value={formValues.password}
               onChange={handleChange}
+              className="border-[2px] border-black-50 w-96 h-16 rounded-md p-2 text-[25px] "
             />
           </div>
           <div>
-            <label>Confirm Password: </label>
             <input
               type="text"
               name="confirmPassword"
+              placeholder="Confirm Password"
               value={formValues.confirmPassword}
               onChange={handleChange}
+              className="border-[2px] border-black-50 w-96 h-16 rounded-md p-2 text-[25px] "
             />
           </div>
-          <button type="submit" className="bg-white ml-2 text-black">
-            Submit
+          <h1 className="self-start">Already have an accout? Login</h1>
+          <button
+            type="submit"
+            className=" flex items-center justify-center h-16 w-96 p-2 text-3xl text-white"
+          >
+            <FontAwesomeIcon className="h-6 mr-4" icon={faLock} />
+            <h1>Sign Up</h1>
           </button>
         </form>
       </div>
