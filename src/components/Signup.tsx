@@ -54,7 +54,7 @@ export const Signup = () => {
   };
 
   return (
-    <div className="h-screen relative bg-[#264653]">
+    <div className="h-screen relative gradient">
       <div className="h-2/3 overflow-hidden relative">
         <Image
           src={background}

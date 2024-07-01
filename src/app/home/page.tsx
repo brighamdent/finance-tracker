@@ -25,7 +25,7 @@ const page = () => {
         <h1>Expense Tracker</h1>
         <h1>Income Logger</h1>
       </div>
-      <div className="bg-[#264653]  h-14 absolute w-full bottom-0"></div>
+      <div className="gradient  h-14 absolute w-full bottom-0"></div>
     </div>
   );
 };
