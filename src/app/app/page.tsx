@@ -7,6 +7,7 @@ import {
   faCaretUp,
   faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
+import Budget from "src/components/Budget";
 
 export default function page() {
   return (
@@ -34,11 +35,14 @@ export default function page() {
             </div>
           </div>
           <div className="flex items-center">
-            <button className="h-8 flex items-center justify-center  p-2 ml-4">
+            <button className="h-8 flex items-center justify-center p-2 ml-4">
               <FontAwesomeIcon className="h-6" icon={faGauge} />
               <h1 className="text-xl ml-4">Dashboard</h1>
             </button>
           </div>
+        </div>
+        <div>
+          <Budget />
         </div>
       </div>
     </div>
