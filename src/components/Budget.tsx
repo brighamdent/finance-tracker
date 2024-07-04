@@ -61,7 +61,7 @@ export default function Budget() {
         options={chartOptions}
       />
       <div className="w-full flex flex-col items-center ">
-        <h1 className="text-center text-3xl">Budget</h1>
+        <h1 className="text-center text-3xl mb-1">Budget</h1>
         <div className="grid col-span-4 gap-3 w-[90%] text-center">
           <h1 className="">Priority</h1>
           <h1 className="text-left">Item</h1>
@@ -85,7 +85,7 @@ export default function Budget() {
         </div>
       </div>
       <div className="w-[90%] h-24 absolute bottom-2 flex items-center justify-around">
-        <div className="flex-col flex items-center justify-around h-full w-[75%] ">
+        <div className="flex-col flex items-center justify-around h-full w-[100%] ">
           <div className="bg-[#559CB9] text-center rounded-md w-full h-9 flex items-center p-2">
             <h1>Total Budgeted Expenses: $1,235</h1>
           </div>
@@ -93,7 +93,7 @@ export default function Budget() {
             <h1>Income - Budgeted Expenses: $142</h1>
           </div>
         </div>
-        <button className="h-[80%] w-20">
+        <button className="h-20 w-20 ml-4">
           <FontAwesomeIcon icon={faPlus} className="h-1/2 text-center w-full" />
         </button>
       </div>

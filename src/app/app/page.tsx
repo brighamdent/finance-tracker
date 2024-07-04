@@ -8,6 +8,9 @@ import {
   faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 import Budget from "src/components/Budget";
+import Income from "src/components/Income";
+import Expenses from "src/components/Expenses";
+import Savings from "src/components/Savings";
 
 export default function page() {
   return (
@@ -29,9 +32,9 @@ export default function page() {
           <h1 className="text-2xl">PennyArc</h1>
           <div className="flex justify-around items-center w-44">
             <h1 className="text-5xl">June</h1>
-            <div className="">
-              <FontAwesomeIcon className="h-8" icon={faCaretUp} />
-              <FontAwesomeIcon icon={faCaretDown} />
+            <div className="flex flex-col items-center">
+              <FontAwesomeIcon className="h-6" icon={faCaretUp} />
+              <FontAwesomeIcon className="h-6" icon={faCaretDown} />
             </div>
           </div>
           <div className="flex items-center">
@@ -41,8 +44,13 @@ export default function page() {
             </button>
           </div>
         </div>
-        <div>
+        <div className="flex absolute top-24">
           <Budget />
+          <div className="flex flex-col">
+            <Income />
+            <Expenses />
+          </div>
+          <Savings />
         </div>
       </div>
     </div>
