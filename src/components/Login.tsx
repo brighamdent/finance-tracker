@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import Link from "next/link";
 
 export const Login = () => {
   const [formValues, setFormValues] = useState({
@@ -28,7 +29,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="h-screen relative bg-[#264653]">
+    <div className="h-screen relative  gradient">
       <div className="h-2/3 overflow-hidden relative">
         <Image
           src={background}
@@ -64,7 +65,9 @@ export const Login = () => {
             />
           </div>
           <div className="self-start">
-            <h1>Don't have an account? Sign Up</h1>
+            <Link href={"/signup"}>
+              <h1>Don't have an account? Sign Up</h1>
+            </Link>
             <h1 className="mt-2">Forgot Password?</h1>
           </div>
           <button

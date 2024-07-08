@@ -5,6 +5,7 @@ import background from "../../public/main-photo.jpg";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 export const Signup = () => {
   const [formValues, setFormValues] = useState({
@@ -99,7 +100,9 @@ export const Signup = () => {
               className="border-[2px] border-black-50 w-96 h-16 rounded-md p-2 text-[25px] "
             />
           </div>
-          <h1 className="self-start">Already have an accout? Login</h1>
+          <Link href="/login">
+            <h1 className="self-start">Already have an accout? Login</h1>
+          </Link>
           <button
             type="submit"
             className=" flex items-center justify-center h-16 w-96 p-2 text-3xl text-white"
