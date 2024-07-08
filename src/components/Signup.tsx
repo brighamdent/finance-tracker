@@ -5,15 +5,17 @@ import background from "../../public/main-photo.jpg";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export const Signup = () => {
   const [formValues, setFormValues] = useState({
-    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+
+  const router = useRouter();
 
   const { currUserData, signup } = useAuth();
 
@@ -28,8 +30,7 @@ export const Signup = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const { firstName, lastName, email, password, confirmPassword } =
-        formValues;
+      const { email, password, confirmPassword } = formValues;
       if (password != confirmPassword) {
         throw new Error("Passwords did not match");
       }
@@ -41,13 +42,14 @@ export const Signup = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ id, email, firstName, lastName }),
+          body: JSON.stringify({ id, email }),
         });
         if (!response) {
           throw new Error("Failed to create user");
         }
         const data = await response.json();
         console.log(`New User: ${JSON.stringify(data)}`);
+        router.push("/app");
       });
     } catch (error) {
       console.log(error);

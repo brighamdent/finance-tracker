@@ -5,17 +5,15 @@ export async function POST(req: NextRequest) {
   console.log("POST method Running");
 
   try {
-    const { id, email, firstName, lastName } = await req.json();
+    const { id, email } = await req.json();
     console.log("Parsed request body", {
       id,
       email,
-      firstName,
-      lastName,
     });
 
     const [result] = await pool.query(
-      "INSERT INTO users (user_id, email, first_name, last_name) VALUES (?,?,?,?)",
-      [id, email, firstName, lastName],
+      "INSERT INTO users (user_id, email) VALUES (?,?)",
+      [id, email],
     );
     console.log("Query result:", result);
 

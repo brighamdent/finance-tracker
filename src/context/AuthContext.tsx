@@ -15,6 +15,10 @@ interface AuthContextType {
   currentUser: any;
   currUserData: UserData | null;
   signup: (email: string, password: string) => Promise<{ id: string } | void>;
+  login: (
+    email: string,
+    password: string,
+  ) => Promise<firebase.auth.UserCredentials>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -88,6 +92,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     currentUser,
     currUserData,
     signup,
+    login,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

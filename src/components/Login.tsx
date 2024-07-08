@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export const Login = () => {
   const [formValues, setFormValues] = useState({
@@ -13,16 +14,22 @@ export const Login = () => {
     password: "",
   });
 
-  const { signup } = useAuth();
+  const router = useRouter();
+
+  const { login } = useAuth();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
+      const { email, password } = formValues;
+      login(email, password).then(() => {
+        router.push("/app");
+      });
     } catch (error) {
       console.log(error);
     }
