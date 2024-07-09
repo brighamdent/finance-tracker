@@ -12,6 +12,11 @@ h1 {
 
 button {
   background-color: #f6a261;
+  font-weight: 800;
+}
+
+input {
+  color: black;
 }
 
 .button {
@@ -20,4 +25,13 @@ button {
 
 .gradient {
   background: linear-gradient(to bottom right, #264653, #559cb9);
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+I.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
