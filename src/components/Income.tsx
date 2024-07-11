@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import IncomeModal from "./IncomeModal";
 import useRowCountSetter from "src/hooks/useRowCountSetter";
+import useScrollToBottom from "src/hooks/useScrollToBottom";
 
 export default function Income() {
   const [items, setItems] = useState([
@@ -8,34 +9,16 @@ export default function Income() {
       source: "English Classes",
       amount: 1500,
     },
-    // {
-    //   source: "Mug Company",
-    //   amount: 300,
-    // },
+    {
+      source: "Mug Company",
+      amount: 300,
+    },
   ]);
   const [rowCount, setRowCount] = useState(0);
 
-  // const calculateEmptyRows = (rowCount: number, length: number) => {
-  //   const rowsNeeded = rowCount - length;
-  //   if (rowsNeeded > 0) {
-  //     return rowsNeeded;
-  //   }
-  //   return 0;
-  // };
-  //
-  // useEffect(() => {
-  //   setRowCount(calculateEmptyRows(3, items.length));
-  // }, [items]);
-
   useRowCountSetter(3, items, setRowCount);
 
-  useEffect(() => {
-    const el = document.getElementById("items");
-
-    if (el) {
-      el.scrollTop = el.scrollHeight;
-    }
-  }, [items]);
+  useScrollToBottom("items", items);
 
   return (
     <div className=" gradient w-[700px] h-[250px] flex items-center rounded-md relative m-4">
