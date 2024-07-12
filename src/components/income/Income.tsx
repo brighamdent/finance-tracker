@@ -25,20 +25,20 @@ export default function Income() {
   useScrollToBottom("items", items);
 
   return (
-    <div className=" gradient w-[700px] h-[250px] flex items-center rounded-md relative m-4">
-      <div className="bg-red-400 h-40 w-40">Chart</div>
-      <div className="w-full h-full">
-        <div className="flex flex-col items-center  ">
-          <div className="w-[90%] mt-5 mb-2 flex justify-between">
-            <h1 className="text-left text-3xl ">Income</h1>
+    <div className="gradient relative m-4 flex h-[250px] w-[700px] items-center rounded-md">
+      <div className="h-40 w-40 bg-red-400">Chart</div>
+      <div className="h-full w-full">
+        <div className="flex flex-col items-center">
+          <div className="mb-2 mt-5 flex w-[90%] justify-between">
+            <h1 className="text-left text-3xl">Income</h1>
             <AddIncomeModal setItems={setItems} />
           </div>
-          <div className="grid col-span-2 gap-3 w-[90%]  text-center">
-            <h1 className="text-left ml-4">Source</h1>
+          <div className="col-span-2 grid w-[90%] gap-3 text-center">
+            <h1 className="ml-4 text-left">Source</h1>
             <h1 className="">Amount</h1>
             <div
               id="items"
-              className="grid grid-cols-subgrid col-span-4 gap-3 h-32 overflow-scroll hide-scrollbar"
+              className="hide-scrollbar col-span-4 grid h-32 grid-cols-subgrid gap-3 overflow-scroll"
             >
               {items.map((item, index) => (
                 <EditIncomeModal
@@ -48,7 +48,7 @@ export default function Income() {
                 />
               ))}
               {Array.from({ length: rowCount }).map((_, index) => (
-                <div className="bg-[#559CB950] h-8 text-center border-4 grid grid-cols-subgrid col-span-4 border-transparent rounded-md"></div>
+                <div className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB950] text-center"></div>
               ))}
             </div>
           </div>

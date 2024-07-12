@@ -42,39 +42,39 @@ export function AddIncomeModal({ setItems }: AddIncomeModalProps) {
   return (
     <div>
       <button onClick={handleModalToggle} className="h-12 w-12">
-        <FontAwesomeIcon icon={faPlus} className="h-6 text-center w-full" />
+        <FontAwesomeIcon icon={faPlus} className="h-6 w-full text-center" />
       </button>
       {modal && (
         <>
           <div
             onClick={handleModalToggle}
-            className="fixed top-0 left-0 h-full w-full bg-black/10 z-50 backdrop-blur-sm"
+            className="fixed left-0 top-0 z-50 h-full w-full bg-black/10 backdrop-blur-sm"
           />
-          <div className=" p-4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-[450px] h-[500px] gradient rounded-md flex flex-col items-center">
-            <h1 className="text-xl mb-4">Add Income Source</h1>
+          <div className="gradient fixed left-1/2 top-1/2 z-50 flex h-[500px] w-[450px] -translate-x-1/2 -translate-y-1/2 transform flex-col items-center rounded-md p-4">
+            <h1 className="mb-4 text-xl">Add Income Source</h1>
             <form
               onSubmit={handleSubmit}
-              className="flex flex-col h-[500px] justify-around"
+              className="flex h-[500px] flex-col justify-around"
             >
               <div>
-                <h1 className="text-2xl mb-2">Source</h1>
+                <h1 className="mb-2 text-2xl">Source</h1>
                 <input
                   onChange={handleChange}
                   type="text"
                   name="source"
                   value={formValues.source}
-                  className="border-[2px] border-black-50 w-80 h-16 text-[#264653] rounded-md text-[25px] "
+                  className="border-black-50 h-16 w-80 rounded-md border-[2px] text-[25px] text-[#264653]"
                   required
                 />
               </div>
               <div>
-                <h1 className="text-2xl mb-2">Amount</h1>
+                <h1 className="mb-2 text-2xl">Amount</h1>
                 <input
                   type="number"
                   name="amount"
                   value={formValues.amount}
                   onChange={handleChange}
-                  className="border-[2px] border-black-50 w-80 h-16 text-[#264653] rounded-md text-[25px] "
+                  className="border-black-50 h-16 w-80 rounded-md border-[2px] text-[25px] text-[#264653]"
                   required
                 />
               </div>

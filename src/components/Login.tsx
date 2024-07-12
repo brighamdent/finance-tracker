@@ -36,21 +36,21 @@ export const Login = () => {
   };
 
   return (
-    <div className="h-screen relative  gradient">
-      <div className="h-2/3 overflow-hidden relative">
+    <div className="gradient relative h-screen">
+      <div className="relative h-2/3 overflow-hidden">
         <Image
           src={background}
           alt=""
-          className="object-cover h-full w-full transform scale-150"
+          className="h-full w-full scale-150 transform object-cover"
           style={{ objectPosition: "left 30%" }}
         />
       </div>
-      <div className="absolute flex flex-col items-center text-[#264653] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white h-[600px] rounded-md w-[500px] p-8">
+      <div className="absolute left-1/2 top-1/2 flex h-[600px] w-[500px] -translate-x-1/2 -translate-y-1/2 transform flex-col items-center rounded-md bg-white p-8 text-[#264653]">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col justify-around items-center h-[90%] "
+          className="flex h-[90%] flex-col items-center justify-around"
         >
-          <h1 className="self-start text-[#264653] text-[40px]">Login</h1>
+          <h1 className="self-start text-[40px] text-[#264653]">Login</h1>
           <div>
             <input
               type="text"
@@ -58,7 +58,7 @@ export const Login = () => {
               placeholder="Email"
               value={formValues.email}
               onChange={handleChange}
-              className="border-[2px] border-black-50 w-96 h-16 rounded-md p-2 text-[25px] "
+              className="border-black-50 h-16 w-96 rounded-md border-[2px] p-2 text-[25px]"
             />
           </div>
           <div>
@@ -68,7 +68,7 @@ export const Login = () => {
               placeholder="Password"
               value={formValues.password}
               onChange={handleChange}
-              className="border-[2px] border-black-50 w-96 h-16 rounded-md p-2 text-[25px] "
+              className="border-black-50 h-16 w-96 rounded-md border-[2px] p-2 text-[25px]"
             />
           </div>
           <div className="self-start">
@@ -79,9 +79,9 @@ export const Login = () => {
           </div>
           <button
             type="submit"
-            className=" flex items-center justify-center h-16 w-96 p-2 text-3xl text-white"
+            className="flex h-16 w-96 items-center justify-center p-2 text-3xl text-white"
           >
-            <FontAwesomeIcon className="h-6 mr-4" icon={faLock} />
+            <FontAwesomeIcon className="mr-4 h-6" icon={faLock} />
             <h1>Login</h1>
           </button>
         </form>

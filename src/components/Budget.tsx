@@ -55,14 +55,14 @@ export default function Budget() {
     },
   ];
   return (
-    <div className="gradient w-[500px] h-[725px] flex flex-col items-center rounded-md relative m-4">
+    <div className="gradient relative m-4 flex h-[725px] w-[500px] flex-col items-center rounded-md">
       <AgCharts
         className="h-1/3 bg-transparent text-blue-50"
         options={chartOptions}
       />
-      <div className="w-full flex flex-col items-center ">
-        <h1 className="text-center text-3xl mb-1">Budget</h1>
-        <div className="grid col-span-4 gap-3 w-[90%] text-center">
+      <div className="flex w-full flex-col items-center">
+        <h1 className="mb-1 text-center text-3xl">Budget</h1>
+        <div className="col-span-4 grid w-[90%] gap-3 text-center">
           <h1 className="">Priority</h1>
           <h1 className="text-left">Item</h1>
           <h1 className="">Cost</h1>
@@ -70,7 +70,7 @@ export default function Budget() {
           {items.map((item, index) => (
             <div
               key={index}
-              className="bg-[#559CB9] h-8 text-center border-4 grid grid-cols-subgrid col-span-4 border-transparent rounded-md"
+              className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB9] text-center"
             >
               <p>{item.priority}</p>
               <p className="text-left">{item.item}</p>
@@ -78,23 +78,23 @@ export default function Budget() {
               <p>{item.amountspent}</p>
             </div>
           ))}
-          <div className="bg-[#559CB9] h-8 text-center border-4 grid grid-cols-subgrid col-span-4 border-transparent rounded-md"></div>
-          <div className="bg-[#559CB9] h-8 text-center border-4 grid grid-cols-subgrid col-span-4 border-transparent rounded-md"></div>
-          <div className="bg-[#559CB9] h-8 text-center border-4 grid grid-cols-subgrid col-span-4 border-transparent rounded-md"></div>
-          <div className="bg-[#559CB9] h-8 text-center border-4 grid grid-cols-subgrid col-span-4 border-transparent rounded-md"></div>
+          <div className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB9] text-center"></div>
+          <div className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB9] text-center"></div>
+          <div className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB9] text-center"></div>
+          <div className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB9] text-center"></div>
         </div>
       </div>
-      <div className="w-[90%] h-24 absolute bottom-2 flex items-center justify-around">
-        <div className="flex-col flex items-center justify-around h-full w-[100%] ">
-          <div className="bg-[#559CB9] text-center rounded-md w-full h-9 flex items-center p-2">
+      <div className="absolute bottom-2 flex h-24 w-[90%] items-center justify-around">
+        <div className="flex h-full w-[100%] flex-col items-center justify-around">
+          <div className="flex h-9 w-full items-center rounded-md bg-[#559CB9] p-2 text-center">
             <h1>Total Budgeted Expenses: $1,235</h1>
           </div>
-          <div className="bg-[#559CB9] text-center rounded-md w-full h-9 flex items-center p-2">
+          <div className="flex h-9 w-full items-center rounded-md bg-[#559CB9] p-2 text-center">
             <h1>Income - Budgeted Expenses: $142</h1>
           </div>
         </div>
-        <button className="h-20 w-20 ml-4">
-          <FontAwesomeIcon icon={faPlus} className="h-1/2 text-center w-full" />
+        <button className="ml-4 h-20 w-20">
+          <FontAwesomeIcon icon={faPlus} className="h-1/2 w-full text-center" />
         </button>
       </div>
     </div>

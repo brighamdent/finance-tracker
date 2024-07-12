@@ -52,42 +52,42 @@ export function EditIncomeModal({
     <>
       <div
         onClick={handleModalToggle}
-        className="bg-[#559CB9] h-8 text-center border-4 grid grid-cols-subgrid col-span-4 border-transparent rounded-md"
+        className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB9] text-center"
       >
-        <p className="text-left ml-4">{item.source}</p>
+        <p className="ml-4 text-left">{item.source}</p>
         <p>{item.amount}</p>
       </div>
       {modal && (
         <>
           <div
             onClick={handleModalToggle}
-            className="fixed top-0 left-0 h-full w-full bg-black/10 z-50 backdrop-blur-sm"
+            className="fixed left-0 top-0 z-50 h-full w-full bg-black/10 backdrop-blur-sm"
           />
-          <div className=" p-4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-[450px] h-[500px] gradient rounded-md flex flex-col items-center">
-            <h1 className="text-xl mb-4">Edit Income Source</h1>
+          <div className="gradient fixed left-1/2 top-1/2 z-50 flex h-[500px] w-[450px] -translate-x-1/2 -translate-y-1/2 transform flex-col items-center rounded-md p-4">
+            <h1 className="mb-4 text-xl">Edit Income Source</h1>
             <form
               onSubmit={handleSubmit}
-              className="flex flex-col h-[500px] justify-around"
+              className="flex h-[500px] flex-col justify-around"
             >
               <div>
-                <h1 className="text-2xl text-left pl-2 mb-2">Source</h1>
+                <h1 className="mb-2 pl-2 text-left text-2xl">Source</h1>
                 <input
                   onChange={handleChange}
                   type="text"
                   name="source"
                   value={formValues.source}
-                  className="border-[2px] text-[#264653] border-black-50 w-80 h-16 rounded-md text-[25px] "
+                  className="border-black-50 h-16 w-80 rounded-md border-[2px] text-[25px] text-[#264653]"
                   required
                 />
               </div>
               <div>
-                <h1 className="text-2xl text-left pl-2 mb-2">Amount</h1>
+                <h1 className="mb-2 pl-2 text-left text-2xl">Amount</h1>
                 <input
                   type="number"
                   name="amount"
                   value={formValues.amount}
                   onChange={handleChange}
-                  className="border-[2px] border-black-50 w-80 h-16 rounded-md text-[#264653] text-[25px] "
+                  className="border-black-50 h-16 w-80 rounded-md border-[2px] text-[25px] text-[#264653]"
                   required
                 />
               </div>
@@ -95,7 +95,7 @@ export function EditIncomeModal({
                 <button
                   type="button"
                   onClick={handleDelete}
-                  className="h-18 w-36 p-2 text-xl "
+                  className="h-18 w-36 p-2 text-xl"
                 >
                   Delete Source
                 </button>

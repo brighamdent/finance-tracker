@@ -7,25 +7,25 @@ import { Navbar } from "src/components/Navbar";
 
 const page = () => {
   return (
-    <div className="h-screen bg-white relative">
+    <div className="relative h-screen bg-white">
       <Navbar />
-      <Image src={background} alt="" className="object-cover h-2/3" />
-      <div className="absolute inset-20 flex flex-col font-bold mt-10">
+      <Image src={background} alt="" className="h-2/3 object-cover" />
+      <div className="absolute inset-20 mt-10 flex flex-col font-bold">
         <h1 className="text-[4rem]">Dream Big and Enjoy Life</h1>
-        <h2 className="text-[2rem] w-96">
+        <h2 className="w-96 text-[2rem]">
           Say goodbye to financial stress with our powerful budgeting tools.
         </h2>
-        <button className="h-12 flex items-center justify-around w-48 p-2 mt-8">
+        <button className="mt-8 flex h-12 w-48 items-center justify-around p-2">
           <FontAwesomeIcon className="h-6" icon={faLock} />
           <h1 className="text-xl">Sign Up Free</h1>
         </button>
       </div>
-      <div className="flex justify-around text-[#264653] w-full mt-4 text-xl">
+      <div className="mt-4 flex w-full justify-around text-xl text-[#264653]">
         <h1>Budget Builder</h1>
         <h1>Expense Tracker</h1>
         <h1>Income Logger</h1>
       </div>
-      <div className="gradient  h-14 absolute w-full bottom-0"></div>
+      <div className="gradient absolute bottom-0 h-14 w-full"></div>
     </div>
   );
 };
