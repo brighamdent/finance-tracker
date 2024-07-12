@@ -1,3 +1,5 @@
+import { faX } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 
 export function EditIncomeModal({
@@ -64,6 +66,11 @@ export function EditIncomeModal({
             className="fixed left-0 top-0 z-50 h-full w-full bg-black/10 backdrop-blur-sm"
           />
           <div className="gradient fixed left-1/2 top-1/2 z-50 flex h-[500px] w-[450px] -translate-x-1/2 -translate-y-1/2 transform flex-col items-center rounded-md p-4">
+            <FontAwesomeIcon
+              icon={faX}
+              className="absolute right-4 top-4 rounded-md p-2 hover:bg-white/10"
+              onClick={handleModalToggle}
+            />
             <h1 className="mb-4 text-xl">Edit Income Source</h1>
             <form
               onSubmit={handleSubmit}
