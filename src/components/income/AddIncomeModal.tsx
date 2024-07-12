@@ -1,32 +1,35 @@
-"use client";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 
-export default function IncomeModal({ setItems }) {
+export function AddIncomeModal({ setItems }: AddIncomeModalProps) {
   const [modal, setModal] = useState(false);
   const [formValues, setFormValues] = useState({
     source: "",
     amount: "",
   });
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleModalToggle = () => {
+    setModal(!modal);
+    setFormValues({
+      source: "",
+      amount: "",
+    });
+  };
+
+  const handleChange = (event: ChangeEvent) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleModalToggle = () => {
-    setModal(!modal);
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-
-    setItems((prev) => [
+    setItems((prev: IncomeItem[]) => [
       ...prev,
       {
+        id: prev.length ? prev[prev.length - 1].id + 1 : 1,
         source: formValues.source,
-        amount: formValues.amount,
+        amount: parseFloat(formValues.amount),
       },
     ]);
     setFormValues({
@@ -54,24 +57,24 @@ export default function IncomeModal({ setItems }) {
               className="flex flex-col h-[500px] justify-around"
             >
               <div>
-                <h1 className="text-3xl mb-2">Source</h1>
+                <h1 className="text-2xl mb-2">Source</h1>
                 <input
                   onChange={handleChange}
                   type="text"
                   name="source"
                   value={formValues.source}
-                  className="border-[2px] border-black-50 w-80 h-16 rounded-md text-[25px] "
+                  className="border-[2px] border-black-50 w-80 h-16 text-[#264653] rounded-md text-[25px] "
                   required
                 />
               </div>
               <div>
-                <h1 className="text-3xl mb-2">Amount</h1>
+                <h1 className="text-2xl mb-2">Amount</h1>
                 <input
-                  type="text"
+                  type="number"
                   name="amount"
                   value={formValues.amount}
                   onChange={handleChange}
-                  className="border-[2px] border-black-50 w-80 h-16 rounded-md text-[25px] "
+                  className="border-[2px] border-black-50 w-80 h-16 text-[#264653] rounded-md text-[25px] "
                   required
                 />
               </div>

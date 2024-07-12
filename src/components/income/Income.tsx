@@ -1,15 +1,19 @@
+"use client";
 import React, { useEffect, useState } from "react";
-import IncomeModal from "./IncomeModal";
 import useRowCountSetter from "src/hooks/useRowCountSetter";
 import useScrollToBottom from "src/hooks/useScrollToBottom";
+import { AddIncomeModal } from "./AddIncomeModal";
+import { EditIncomeModal } from "./EditIncomeModal";
 
 export default function Income() {
   const [items, setItems] = useState([
     {
+      id: 1,
       source: "English Classes",
       amount: 1500,
     },
     {
+      id: 2,
       source: "Mug Company",
       amount: 300,
     },
@@ -27,7 +31,7 @@ export default function Income() {
         <div className="flex flex-col items-center  ">
           <div className="w-[90%] mt-5 mb-2 flex justify-between">
             <h1 className="text-left text-3xl ">Income</h1>
-            <IncomeModal setItems={setItems} />
+            <AddIncomeModal setItems={setItems} />
           </div>
           <div className="grid col-span-2 gap-3 w-[90%]  text-center">
             <h1 className="text-left ml-4">Source</h1>
@@ -37,13 +41,11 @@ export default function Income() {
               className="grid grid-cols-subgrid col-span-4 gap-3 h-32 overflow-scroll hide-scrollbar"
             >
               {items.map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-[#559CB9] h-8 text-center border-4 grid grid-cols-subgrid col-span-4 border-transparent rounded-md"
-                >
-                  <p className="text-left ml-4">{item.source}</p>
-                  <p>{item.amount}</p>
-                </div>
+                <EditIncomeModal
+                  items={items}
+                  item={item}
+                  setItems={setItems}
+                />
               ))}
               {Array.from({ length: rowCount }).map((_, index) => (
                 <div className="bg-[#559CB950] h-8 text-center border-4 grid grid-cols-subgrid col-span-4 border-transparent rounded-md"></div>

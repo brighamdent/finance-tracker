@@ -9,7 +9,7 @@ import {
   faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 import Budget from "src/components/Budget";
-import Income from "src/components/Income";
+import Income from "src/components/income/Income";
 import Expenses from "src/components/Expenses";
 import Savings from "src/components/Savings";
 import { useAuth } from "src/context/AuthContext";
