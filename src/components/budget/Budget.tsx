@@ -4,56 +4,49 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getPriority } from "os";
 import React, { useState } from "react";
 import { AgCharts } from "ag-charts-react";
+import useRowCountSetter from "src/hooks/useRowCountSetter";
+import useScrollToBottom from "src/hooks/useScrollToBottom";
+import { AddBudgetModal } from "./AddBudgetModal";
+import { EditBudgetModal } from "./EditBudgetModal";
 
 export default function Budget() {
+  const [items, setItems] = useState([
+    {
+      id: 1,
+      priority: 1,
+      item: "Rent",
+      cost: 200,
+      spent: 0,
+    },
+    {
+      id: 2,
+      priority: 2,
+      item: "Groceries",
+      cost: 150,
+      spent: 75,
+    },
+    {
+      id: 3,
+      priority: 3,
+      item: "Electricity",
+      cost: 50,
+      spent: 50,
+    },
+  ]);
+  const [rowCount, setRowCount] = useState(0);
   const [chartOptions, setChartOptions] = useState({
-    // Data: Data to be displayed in the chart
-    data: [
-      {
-        priority: 1,
-        item: "Rent",
-        cost: 200,
-        amountspent: 0,
-      },
-      {
-        priority: 2,
-        item: "Groceries",
-        cost: 150,
-        amountspent: "$75",
-      },
-      {
-        priority: 3,
-        item: "Electricity",
-        cost: 50,
-        amountspent: "$50",
-      },
-    ],
+    data: items,
     // Series: Defines which chart type and data to use
     series: [{ type: "pie", angleKey: "cost" }],
     background: {
       visible: false,
     },
   });
-  const items = [
-    {
-      priority: 1,
-      item: "Rent",
-      cost: "$200",
-      amountspent: "$0",
-    },
-    {
-      priority: 2,
-      item: "Groceries",
-      cost: "$150",
-      amountspent: "$75",
-    },
-    {
-      priority: 3,
-      item: "Electricity",
-      cost: "$50",
-      amountspent: "$50",
-    },
-  ];
+
+  useRowCountSetter(7, items, setRowCount);
+
+  useScrollToBottom("items", items);
+
   return (
     <div className="gradient relative m-4 flex h-[725px] w-[500px] flex-col items-center rounded-md">
       <AgCharts
@@ -67,21 +60,17 @@ export default function Budget() {
           <h1 className="text-left">Item</h1>
           <h1 className="">Cost</h1>
           <h1 className="">Spent TD</h1>
-          {items.map((item, index) => (
-            <div
-              key={index}
-              className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB9] text-center"
-            >
-              <p>{item.priority}</p>
-              <p className="text-left">{item.item}</p>
-              <p>{item.cost}</p>
-              <p>{item.amountspent}</p>
-            </div>
-          ))}
-          <div className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB9] text-center"></div>
-          <div className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB9] text-center"></div>
-          <div className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB9] text-center"></div>
-          <div className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB9] text-center"></div>
+          <div
+            id="items"
+            className="hide-scrollbar col-span-4 grid h-[300px] grid-cols-subgrid gap-3 overflow-scroll"
+          >
+            {items.map((item, index) => (
+              <EditBudgetModal item={item} items={items} setItems={setItems} />
+            ))}
+            {Array.from({ length: rowCount }).map((_, index) => (
+              <div className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB950] text-center"></div>
+            ))}
+          </div>
         </div>
       </div>
       <div className="absolute bottom-2 flex h-24 w-[90%] items-center justify-around">
@@ -93,9 +82,7 @@ export default function Budget() {
             <h1>Income - Budgeted Expenses: $142</h1>
           </div>
         </div>
-        <button className="ml-4 h-20 w-20">
-          <FontAwesomeIcon icon={faPlus} className="h-1/2 w-full text-center" />
-        </button>
+        <AddBudgetModal items={items} setItems={setItems} />
       </div>
     </div>
   );

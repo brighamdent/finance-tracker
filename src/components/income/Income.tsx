@@ -18,7 +18,7 @@ export default function Income() {
       amount: 300,
     },
   ]);
-  const [rowCount, setRowCount] = useState(0);
+  const [rowCount, setRowCount] = useState(1);
 
   useRowCountSetter(3, items, setRowCount);
 
@@ -38,7 +38,7 @@ export default function Income() {
             <h1 className="">Amount</h1>
             <div
               id="items"
-              className="hide-scrollbar col-span-4 grid h-32 grid-cols-subgrid gap-3 overflow-scroll"
+              className="hide-scrollbar col-span-4 grid h-[120px] grid-cols-subgrid gap-3 overflow-scroll"
             >
               {items.map((item, index) => (
                 <EditIncomeModal
