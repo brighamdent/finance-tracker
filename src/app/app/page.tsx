@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Budget from "src/components/budget/Budget";
 import Income from "src/components/income/Income";
-import Expenses from "src/components/Expenses";
+import Expenses from "src/components/expenses/Expenses";
 import Savings from "src/components/Savings";
 
 export default function page() {

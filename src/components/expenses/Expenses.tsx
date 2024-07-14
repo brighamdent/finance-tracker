@@ -1,9 +1,11 @@
+"use client";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
+import useRowCountSetter from "src/hooks/useRowCountSetter";
 
 export default function Expenses() {
-  const items = [
+  const [items, setItems] = useState( [
     {
       priority: 1,
       item: "Rent",
@@ -22,15 +24,18 @@ export default function Expenses() {
       cost: 50,
       amountspent: "$50",
     },
-  ];
+  ]);
+  const [rowCount, setRowCount] = useState(0);
+  
+  useRowCountSetter(7, items, setRowCount)
   return (
     <div className="gradient relative m-4 flex h-[443px] w-[700px] flex-col items-center rounded-md">
       <h1 className="mb-2 text-center text-3xl">Expenses</h1>
       <div className="col-span-4 grid w-[90%] gap-3 text-center">
-        <h1 className="">Priority</h1>
+        <h1 className="">Date</h1>
         <h1 className="text-left">Item</h1>
+        <h1 className="">Category</h1>
         <h1 className="">Cost</h1>
-        <h1 className="">Spent TD</h1>
         {items.map((item, index) => (
           <div
             key={index}
@@ -42,9 +47,9 @@ export default function Expenses() {
             <p>{item.amountspent}</p>
           </div>
         ))}
-        <div className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB9] text-center"></div>
-        <div className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB9] text-center"></div>
-        <div className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB9] text-center"></div>
+            {Array.from({ length: rowCount }).map((_, index) => (
+              <div className="col-span-4 grid h-8 grid-cols-subgrid rounded-md border-4 border-transparent bg-[#559CB950] text-center"></div>
+            ))}
       </div>
       <div className="absolute bottom-2 flex h-24 w-[90%] items-center justify-around">
         <div className="flex h-full w-[90%] flex-col items-center justify-around">
